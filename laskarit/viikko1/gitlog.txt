@@ -1,0 +1,113 @@
+commit 340732f609d363fe88488bf5656b2a5cd8e1f60d
+Author: Simo Kettunen <simo.kettunen@live.fi>
+Date:   Mon Nov 1 23:05:32 2021 +0200
+
+    Delete file1 and and rename file2 as file22
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 7a63e901327217d1cd0f852f9fae433169ed2776
+Author: Simo Kettunen <simo.kettunen@live.fi>
+Date:   Mon Nov 1 23:01:57 2021 +0200
+
+    Add files
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 7a466802fa4c5eb63b02c827e702a221b294b87c
+Author: Simo Kettunen <simo.kettunen@live.fi>
+Date:   Mon Nov 1 22:59:01 2021 +0200
+
+    Edit content of eka.txt and kolmas.txt
+
+ eka.txt    | 7 ++-----
+ kolmas.txt | 1 +
+ 2 files changed, 3 insertions(+), 5 deletions(-)
+
+commit bb831e511feb0b22a161372bcf832ce2c6444023
+Author: Simo Kettunen <simo.kettunen@live.fi>
+Date:   Mon Nov 1 22:56:24 2021 +0200
+
+    Rename tiedosto.txt to eka.txt
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit efcc8bec8e20a3b583714f971805f5c54df534ef
+Author: Simo Kettunen <simo.kettunen@live.fi>
+Date:   Mon Nov 1 22:55:33 2021 +0200
+
+    Delete toinen.txt
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit c1d347db690553cf1be6bcad3cd5b1f6dbdb8ee4
+Author: Simo Kettunen <simo.kettunen@live.fi>
+Date:   Mon Nov 1 22:50:22 2021 +0200
+
+    Edit content of tiedosto.txt
+
+ tiedosto.txt | 18 ++++++++++++------
+ 1 file changed, 12 insertions(+), 6 deletions(-)
+
+commit 19c9ef5090351c7f987bb0e1fdb0081794195710
+Author: Simo Kettunen <simo.kettunen@live.fi>
+Date:   Mon Nov 1 22:49:29 2021 +0200
+
+    Add content to tiedosto.txt
+
+ tiedosto.txt | 32 ++++++++++++++++++++++++++++++++
+ 1 file changed, 32 insertions(+)
+
+commit fcd1d14e66f2a5bbd51a07d4f6a0caa19e9fd96e
+Author: Simo Kettunen <simo.kettunen@live.fi>
+Date:   Mon Nov 1 22:46:35 2021 +0200
+
+    Add stuff/a.txt
+
+ stuff/a.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 8b3cc80091d32d644a014bfc22795834cab1bb47
+Author: Simo Kettunen <simo.kettunen@live.fi>
+Date:   Mon Nov 1 22:45:38 2021 +0200
+
+    Add b to toinen.txt and kolmas.txt
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit af861453d91b21516fd7827ada1a6852108f6e35
+Author: Simo Kettunen <simo.kettunen@live.fi>
+Date:   Mon Nov 1 22:44:40 2021 +0200
+
+    Add kolmas.txt
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 3c1bb5dbac4962916008c9625f75abb56909188c
+Author: Simo Kettunen <simo.kettunen@live.fi>
+Date:   Mon Nov 1 22:42:35 2021 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit 0c3fd49b0ab92a6038d94a0bb63cb5f6a8a3120d
+Author: Simo Kettunen <simo.kettunen@live.fi>
+Date:   Mon Nov 1 22:40:45 2021 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
