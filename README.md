@@ -9,4 +9,4 @@ Normaali teksti, **lihavoitu teksti**, *kursivoitu teksti*.
 * [gitlog.txt](laskarit/viikko1/gitlog.txt)
 * [komentorivi.txt](laskarit/viikko1/komentorivi.txt)
 
-Muutos.
+Muutos. Muutos 2a.
