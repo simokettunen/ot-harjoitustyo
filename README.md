@@ -1,7 +1,4 @@
 # ot-harjoitustyö
-Repository for course TKT20008 Ohjelmistotekniikka.
-
-Normaali teksti, **lihavoitu teksti**, *kursivoitu teksti*.
 
 ## Tehtävät
 
@@ -14,4 +11,6 @@ Normaali teksti, **lihavoitu teksti**, *kursivoitu teksti*.
 * [unicafe](laskarit/viikko2/unicafe)
 * [coverage_report.png](laskarit/viikko2/coverage_report.png)
 
-Muutos. Muutos 2a.
+## Harjoitustyö
+* [Määrittelydokumentti](dokumentaatio/vaatimusmaarittely.md)
+* [Tuntikirjanpito](dokumentaatio/tuntikirjanpito.md)
