@@ -9,4 +9,4 @@ BNF-visualisoijan tarkoituksena on piirtää graafi käyttäjän syöttämästä
 ## Ohjelman käyttö
 Ohjelman asennus tapahtuu komennolla `poetry install`, jonka jälkeen ohjelman voi suorittaa komennolla `poetry run invoke start`.
 
-Ohjelman yksikkötestien suoritus onnistuu komennolla `poetry run invoke test` ja testiraportin saa komennolla `poetry run invoke coverage_report`.
+Ohjelman yksikkötestien suoritus onnistuu komennolla `poetry run invoke test` ja testiraportin saa komennolla `poetry run invoke coverage-report`.
