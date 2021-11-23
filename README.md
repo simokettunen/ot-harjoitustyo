@@ -1,16 +1,12 @@
-# ot-harjoitustyö
+# ot-harjoitustyö – BNF-visualisoija
 
-## Tehtävät
+BNF-visualisoijan tarkoituksena on piirtää graafi käyttäjän syöttämästä Backus Naur -muodossa olevasta syötteestä.
 
-### Viikko 1
-* [gitlog.txt](laskarit/viikko1/gitlog.txt)
-* [komentorivi.txt](laskarit/viikko1/komentorivi.txt)
-
-### Viikko 2
-* [maksukortti](laskarit/viikko2/maksukortti)
-* [unicafe](laskarit/viikko2/unicafe)
-* [coverage_report.png](laskarit/viikko2/coverage_report.png)
-
-## Harjoitustyö
+## Dokumentaatio
 * [Määrittelydokumentti](dokumentaatio/vaatimusmaarittely.md)
 * [Tuntikirjanpito](dokumentaatio/tuntikirjanpito.md)
+
+## Ohjelman käyttö
+Ohjelman asennus tapahtuu komennolla `poetry install`, jonka jälkeen ohjelman voi suorittaa komennolla `poetry run invoke start`.
+
+Ohjelman yksikkötestien suoritus onnistuu komennolla `poetry run invoke test` ja testiraportin saa komennolla `poetry run invoke coverage_report`.
