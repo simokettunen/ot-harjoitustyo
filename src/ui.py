@@ -5,7 +5,7 @@ class UI:
     def __init__(self):
         self._root = Tk()
         self._current_view = None
-        self._root.geometry('640x480')
+        self._root.geometry('1280x720')
         
         self._show_start_view()
         
