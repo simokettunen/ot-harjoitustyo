@@ -7,6 +7,10 @@ def coverage(ctx):
 @task(coverage)
 def coverage_report(ctx):
     ctx.run('coverage report -m')
+    
+@task
+def pylint(ctx):
+    ctx.run('pylint src')
 
 @task
 def test(ctx):
