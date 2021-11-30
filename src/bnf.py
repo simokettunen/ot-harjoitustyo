@@ -1,7 +1,7 @@
 import re
 
 def check_syntax(text):
-    """Check if the given single BNF rule has correct syntax."""
+    """Check if the given collection of BNF rules has correct syntax."""
     lines = text.split('\n')
 
     prog = re.compile(r'^<[a-z]+> ::= ((<[a-z]+>|"[a-z]+")( (<[a-z]+>|"[a-z]+"))*)( \| (<[a-z]+>|"[a-z]+")( (<[a-z]+>|"[a-z]+"))*)*$')
