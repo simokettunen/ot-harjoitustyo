@@ -96,7 +96,7 @@ class TestBNF(unittest.TestCase):
                 [{'label': 'c', 'type': 'terminal'}],
             ],
         ]
-        self.assertListEqual(bnf.lines, should_be)
+        self.assertListEqual(bnf.rules, should_be)
         
     def test_bnf_model_consisting_of_two_rules_is_handled_correctly(self):
         bnf = BNF()
@@ -113,7 +113,7 @@ class TestBNF(unittest.TestCase):
                 [{'label': 'e', 'type': 'terminal'}],
             ],
         ]
-        self.assertListEqual(bnf.lines, should_be)
+        self.assertListEqual(bnf.rules, should_be)
         
         
         

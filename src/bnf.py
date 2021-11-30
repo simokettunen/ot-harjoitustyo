@@ -18,7 +18,7 @@ def check_syntax(text):
 
 class BNF():
     def __init__(self):
-        self.lines = []
+        self.rules = []
 
     def _handle_sequence(self, symbols):
         """Create a single sequence from the given input string"""
@@ -57,4 +57,4 @@ class BNF():
             rule = rule.split(' ::= ')
             rule_symbol = rule[0]
             line = self._handle_rule(rule[1])
-            self.lines.append(line)
+            self.rules.append(line)
