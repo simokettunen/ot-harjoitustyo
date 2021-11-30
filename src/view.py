@@ -1,5 +1,5 @@
 from tkinter import ttk, Text, Canvas
-from bnf import check_syntax
+from bnf import check_syntax, BNF
 
 class View:
     def __init__(self, root):
@@ -56,34 +56,10 @@ class EditModeView(View):
         )
         
         self.canvas.grid(row=1, column=1)
-            
-        rule = [
-            [
-                {'type': 'terminal', 'label': 'abc'},
-                {'type': 'terminal', 'label': 'abcd'},
-                {'type': 'terminal', 'label': 'ab'},
-            ],
-            [
-                {'type': 'terminal', 'label': 'abc1'},
-                {'type': 'terminal', 'label': 'abcd2'},
-                {'type': 'terminal', 'label': 'ab3'},
-            ],
-            [
-                {'type': 'terminal', 'label': 'abc1'},
-                {'type': 'terminal', 'label': 'ab3'},
-            ],
-            [
-                {'type': 'non-terminal', 'label': 'a'},
-                {'type': 'terminal', 'label': 'abcd2'},
-                {'type': 'non-terminal', 'label': 'b'},
-            ],
-        ]
-        self._draw_rule(rule)
         
         self._frame.pack()
-
-    # TODO: invent more informative name for this function    
-    def _draw_line(self, line, sx, y):
+  
+    def _draw_sequence(self, line, sx, y):
         
         k2 = 20
         margin = 4
@@ -95,10 +71,7 @@ class EditModeView(View):
             self.canvas.create_line(sx, y, sx + k2, y)
             sx += k2
             
-            if type == 'terminal':
-                a = self.canvas.create_text(sx + margin, y, text=label, anchor='w')
-            elif type == 'non-terminal':
-                a = self.canvas.create_text(sx + margin, y, text=label, anchor='w')
+            a = self.canvas.create_text(sx + margin, y, text=label, anchor='w')
             
             text_bbox = self.canvas.bbox(a)
             text_width = text_bbox[2] - text_bbox[0]
@@ -107,10 +80,10 @@ class EditModeView(View):
             y1 = y - 10
             y2 = y + 10
             
-            if type == 'terminal':
+            if type == 'non-terminal':
                 x2 = sx + margin + text_width + margin
                 self.canvas.create_rectangle(x1, y1, x2, y2, outline='#000000')
-            elif type == 'non-terminal':
+            elif type == 'terminal':
                 x2 = sx + max(margin + text_width + margin, 20)
                 self.canvas.create_oval(x1, y1, x2, y2, outline='#000000')
             
@@ -122,9 +95,8 @@ class EditModeView(View):
                 
         return sx
         
-    def _draw_rule(self, rule):
+    def _draw_line(self, rule, y):
         x = 30
-        y = 30
         r = 5
         k1 = 15
         
@@ -138,7 +110,7 @@ class EditModeView(View):
         
         sxs = []
         for i in range(len(rule)):
-            sx2 = self._draw_line(rule[i], x+r+k1, y+30*i)
+            sx2 = self._draw_sequence(rule[i], x+r+k1, y+30*i)
             self.canvas.create_line(sx, y, sx, y+30*i)
             
             sxs.append(sx2)
@@ -152,6 +124,15 @@ class EditModeView(View):
         
         self.canvas.create_oval(sx+k1+r-r, y-r, sx+k1+r+r, y+r, fill='#000000')
         
+        return y + 30*len(rule)
+        
+    def _draw_rule(self, rule):
+        y = 30
+        
+        self.canvas.delete('all')
+        
+        for line in rule:
+            y = self._draw_line(line, y)
         
     def _handle_button_click(self):
         if not self.is_correct_syntax:
@@ -160,7 +141,12 @@ class EditModeView(View):
         input = self.textarea.get('1.0', 'end-1c')
         self.is_correct_syntax = check_syntax(input)
         
-        if not self.is_correct_syntax:
+        if self.is_correct_syntax:
+            bnf = BNF()
+            bnf.create_from_string(input)
+            print(bnf.lines)
+            self._draw_rule(bnf.lines)
+        else:
             self.syntax_error_label = ttk.Label(
                 master=self._frame,
                 text='Syntax error',
