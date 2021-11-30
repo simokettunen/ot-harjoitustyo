@@ -24,8 +24,7 @@ ignore=CVS
 
 # Add files or directories matching the regex patterns to the ignore-list. The
 # regex matches against paths.
-ignore-paths=src/ui.py,
-             src/view.py,
+ignore-paths=src/ui/*,
              src/tests/*,
 
 # Files or directories matching the regex patterns are skipped. The regex
