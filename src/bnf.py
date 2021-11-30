@@ -4,7 +4,7 @@ def check_syntax(text):
     """Check if the given single BNF rule has correct syntax."""
     lines = text.split('\n')
 
-    prog = re.compile(r'<[a-z]> ::= ((<[a-z]>|\"\s\")( (<[a-z]>|\"\s\"))*)(\| (<[a-z]>|\"\s\")( (<[a-z]>|\"\s\"))*)*')
+    prog = re.compile(r'^<[a-z]+> ::= ((<[a-z]+>|"[a-z]+")( (<[a-z]+>|"[a-z]+"))*)( \| (<[a-z]+>|"[a-z]+")( (<[a-z]+>|"[a-z]+"))*)*$')
 
     for line in lines:
 
