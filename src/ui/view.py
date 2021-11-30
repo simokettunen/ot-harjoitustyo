@@ -144,7 +144,6 @@ class EditModeView(View):
         if self.is_correct_syntax:
             bnf = BNF()
             bnf.create_from_string(input)
-            print(bnf.lines)
             self._draw_rule(bnf.lines)
         else:
             self.syntax_error_label = ttk.Label(
