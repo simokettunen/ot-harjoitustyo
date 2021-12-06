@@ -1,5 +1,5 @@
 import unittest
-from bnf import check_syntax, BNF
+from entities.bnf import check_syntax, BNF
 
 class TestBNF(unittest.TestCase):
     def test_correct_syntax_check_on_empty_input(self):
@@ -54,49 +54,16 @@ class TestBNF(unittest.TestCase):
         result = check_syntax(text)
         self.assertTrue(result)
         
-    def test_sequence_consisting_of_single_terminal_is_handled_correctly(self):
-        bnf = BNF()
-        result = bnf._handle_sequence('"a"')
-        self.assertListEqual(result, [{'label': 'a', 'type': 'terminal'}])
-        
-    def test_sequence_consisting_of_single_nonterminal_is_handled_correctly(self):
-        bnf = BNF()
-        result = bnf._handle_sequence('<a>')
-        self.assertListEqual(result, [{'label': 'a', 'type': 'non-terminal'}])
-        
-    def test_sequence_consisting_of_two_terminals_is_handled_correctly(self):
-        bnf = BNF()
-        result = bnf._handle_sequence('"a" "b"')
-        should_be = [
-            {'label': 'a', 'type': 'terminal'},
-            {'label': 'b', 'type': 'terminal'}
-        ]
-        self.assertListEqual(result, should_be)
-        
-    def test_rule_consisting_of_single_sequence_is_handled_correctly(self):
-        bnf = BNF()
-        result = bnf._handle_rule('<a>')
-        self.assertListEqual(result, [[{'label': 'a', 'type': 'non-terminal'}]])
-        
-    def test_rule_consisting_of_two_sequences_is_handled_correctly(self):
-        bnf = BNF()
-        result = bnf._handle_rule('<a> | "b"')
-        should_be = [
-            [{'label': 'a', 'type': 'non-terminal'}],
-            [{'label': 'b', 'type': 'terminal'}],
-        ]
-        self.assertListEqual(result, should_be)
-        
     def test_bnf_model_consisting_of_single_rule_is_handled_correctly(self):
         bnf = BNF()
         bnf.create_from_string('a ::= <b> | "c"')
-        should_be = [
-            [
-                [{'label': 'b', 'type': 'non-terminal'}],
-                [{'label': 'c', 'type': 'terminal'}],
-            ],
-        ]
-        self.assertListEqual(bnf.rules, should_be)
+        
+        self.assertEqual(len(bnf.rules), 1)
+        self.assertEqual(bnf.rules[0].symbol, 'a')
+        self.assertEqual(bnf.rules[0].sequences[0].symbols[0].label, 'b')
+        self.assertEqual(bnf.rules[0].sequences[0].symbols[0].type, 'non-terminal')
+        self.assertEqual(bnf.rules[0].sequences[1].symbols[0].label, 'c')
+        self.assertEqual(bnf.rules[0].sequences[1].symbols[0].type, 'terminal')
         
     def test_bnf_model_consisting_of_two_rules_is_handled_correctly(self):
         bnf = BNF()
@@ -104,19 +71,13 @@ class TestBNF(unittest.TestCase):
         text += '\n'
         text += 'b ::= "e"'
         bnf.create_from_string(text)
-        should_be = [
-            [
-                [{'label': 'b', 'type': 'non-terminal'}],
-                [{'label': 'c', 'type': 'terminal'}],
-            ],
-            [
-                [{'label': 'e', 'type': 'terminal'}],
-            ],
-        ]
-        self.assertListEqual(bnf.rules, should_be)
         
-        
-        
-        
-        
-        
+        self.assertEqual(len(bnf.rules), 2)
+        self.assertEqual(bnf.rules[0].symbol, 'a')
+        self.assertEqual(bnf.rules[0].sequences[0].symbols[0].label, 'b')
+        self.assertEqual(bnf.rules[0].sequences[0].symbols[0].type, 'non-terminal')
+        self.assertEqual(bnf.rules[0].sequences[1].symbols[0].label, 'c')
+        self.assertEqual(bnf.rules[0].sequences[1].symbols[0].type, 'terminal')
+        self.assertEqual(bnf.rules[1].symbol, 'b')
+        self.assertEqual(bnf.rules[1].sequences[0].symbols[0].label, 'e')
+        self.assertEqual(bnf.rules[1].sequences[0].symbols[0].type, 'terminal')

@@ -1,5 +1,5 @@
 from tkinter import ttk, Text, Canvas
-from bnf import check_syntax, BNF
+from entities.bnf import check_syntax, BNF
 
 class View:
     def __init__(self, root):
@@ -64,9 +64,9 @@ class EditModeView(View):
         k2 = 20
         margin = 4
     
-        for i in range(len(line)):
-            type = line[i]['type']
-            label = line[i]['label']
+        for i in range(len(line.symbols)):
+            type = line.symbols[i].type
+            label = line.symbols[i].label
         
             self.canvas.create_line(sx, y, sx + k2, y)
             sx += k2
@@ -87,7 +87,7 @@ class EditModeView(View):
                 x2 = sx + max(margin + text_width + margin, 20)
                 self.canvas.create_oval(x1, y1, x2, y2, outline='#000000')
             
-            if i == len(line) - 1:
+            if i == len(line.symbols) - 1:
                 self.canvas.create_line(x2, y, x2+k2, y)
                 sx = x2 + k2
             else:
@@ -109,14 +109,14 @@ class EditModeView(View):
         sx += k1
         
         sxs = []
-        for i in range(len(rule)):
-            sx2 = self._draw_sequence(rule[i], x+r+k1, y+30*i)
+        for i in range(len(rule.sequences)):
+            sx2 = self._draw_sequence(rule.sequences[i], x+r+k1, y+30*i)
             self.canvas.create_line(sx, y, sx, y+30*i)
             
             sxs.append(sx2)
             
         sx = max(sxs)
-        for i in range(len(rule)):
+        for i in range(len(rule.sequences)):
             self.canvas.create_line(sxs[i], y+30*i, sx, y+30*i)
             self.canvas.create_line(sx, y+30*i, sx, y)
             
@@ -124,7 +124,7 @@ class EditModeView(View):
         
         self.canvas.create_oval(sx+k1+r-r, y-r, sx+k1+r+r, y+r, fill='#000000')
         
-        return y + 30*len(rule)
+        return y + 30*len(rule.sequences)
         
     def _draw_rule(self, rule):
         y = 30
