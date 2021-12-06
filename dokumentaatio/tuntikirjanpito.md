@@ -7,4 +7,5 @@
 | 23.11. | 5               | Projektin alustus, käyttöliittymän ensimmäisten näkyminen luominen |
 | 29.11. | 5               | Pylintin konfigurointi, Tkinteriin Canvakseen tutustuminen, BNF-säännön piirtämisen kehitystä |
 | 30.11. | 4               | Alustavan arkkitehtuurikuvauksen laatiminen, toiminnallisuuden implementointi BNF-mallin piirtämiseen käyttäjän syötteestä|
-| Yhteensä| 19 | |
+| 6.12. | 6               | BNF-mallin refaktorointi neljään erilliseen luokkaan |
+| Yhteensä| 25 | |
