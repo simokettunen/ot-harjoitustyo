@@ -1,4 +1,5 @@
 import re
+import uuid
 from entities.rule import Rule
 
 def check_syntax(text):
@@ -20,6 +21,7 @@ def check_syntax(text):
 class BNF():
     def __init__(self):
         self.rules = []
+        self.id = str(uuid.uuid4())
 
     def __str__(self):
         string = ''
@@ -36,5 +38,5 @@ class BNF():
 
         for line in lines:
             line = line.split(' ::= ')
-            rule = Rule(line[0], line[1].split(' | '))
+            rule = Rule(line[0], line[1].split(' | '), self.id)
             self.rules.append(rule)

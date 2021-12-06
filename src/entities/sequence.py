@@ -1,7 +1,10 @@
+import uuid
 from entities.symbol import Symbol
 
 class Sequence():
-    def __init__(self, symbols):
+    def __init__(self, symbols, rule_id):
+        self.id = str(uuid.uuid4())
+        self.rule_id = rule_id
         self.symbols = []
         self._init_sequence(symbols)
 
@@ -22,5 +25,5 @@ class Sequence():
 
             symbol_label = symbol[1:-1]
 
-            symbol_object = Symbol(symbol_label, symbol_type)
+            symbol_object = Symbol(symbol_label, symbol_type, self.id)
             self.symbols.append(symbol_object)

@@ -64,6 +64,7 @@ class TestBNF(unittest.TestCase):
         self.assertEqual(bnf.rules[0].sequences[0].symbols[0].type, 'non-terminal')
         self.assertEqual(bnf.rules[0].sequences[1].symbols[0].label, 'c')
         self.assertEqual(bnf.rules[0].sequences[1].symbols[0].type, 'terminal')
+        self.assertEqual(bnf.rules[0].bnf_id, bnf.id)
         
     def test_bnf_model_consisting_of_two_rules_is_handled_correctly(self):
         bnf = BNF()
@@ -78,6 +79,8 @@ class TestBNF(unittest.TestCase):
         self.assertEqual(bnf.rules[0].sequences[0].symbols[0].type, 'non-terminal')
         self.assertEqual(bnf.rules[0].sequences[1].symbols[0].label, 'c')
         self.assertEqual(bnf.rules[0].sequences[1].symbols[0].type, 'terminal')
+        self.assertEqual(bnf.rules[0].bnf_id, bnf.id)
         self.assertEqual(bnf.rules[1].symbol, 'b')
         self.assertEqual(bnf.rules[1].sequences[0].symbols[0].label, 'e')
         self.assertEqual(bnf.rules[1].sequences[0].symbols[0].type, 'terminal')
+        self.assertEqual(bnf.rules[1].bnf_id, bnf.id)
