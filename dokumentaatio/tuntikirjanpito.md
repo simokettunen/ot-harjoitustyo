@@ -9,4 +9,4 @@
 | 30.11. | 4               | Alustavan arkkitehtuurikuvauksen laatiminen, toiminnallisuuden implementointi BNF-mallin piirtämiseen käyttäjän syötteestä|
 | 6.12. | 6               | BNF-mallin refaktorointi neljään erilliseen luokkaan |
 | 7.12. | 6               | Arkkitehtuurin muokkaus vastaamaan kerrosarkkitehtuuria, lataus- ja tallennustoimintojen implementointi |
-| Yhteensä| 1 | |
+| Yhteensä| 31 | |
