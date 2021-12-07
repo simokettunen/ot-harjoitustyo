@@ -2,6 +2,9 @@
 
 BNF-visualisoijan tarkoituksena on piirtää graafi käyttäjän syöttämästä Backus Naur -muodossa olevasta syötteestä. Ohjelmassa pystyy tallentamaan mallin ja lataamaan aiemmin tallennetun mallin.
 
+## Releaset
+* [Viikko 5](https://github.com/simokettunen/ot-harjoitustyo/releases/tag/viikko5)
+
 ## Dokumentaatio
 * [Määrittelydokumentti](dokumentaatio/vaatimusmaarittely.md)
 * [Arkkitehtuurikuvaus](dokumentaatio/arkkitehtuuri.md)
