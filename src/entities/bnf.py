@@ -19,13 +19,13 @@ def check_syntax(text):
     return True
 
 class BNF():
-    def __init__(self, id=None):
+    def __init__(self, bnf_id=None):
         self.rules = []
-        
-        if id is None:
+
+        if bnf_id is None:
             self.id = str(uuid.uuid4())
         else:
-            self.id = id
+            self.id = bnf_id
 
     def __str__(self):
         string = ''
@@ -33,7 +33,7 @@ class BNF():
         for rule in self.rules:
             if len(string) > 0:
                 string += '\n'
-            
+
             string += rule.__str__()
 
         return string

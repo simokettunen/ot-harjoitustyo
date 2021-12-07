@@ -88,8 +88,6 @@ class EditModeView(View):
         
         if self._service.bnf:
             self.textarea.insert('end-1c', self._service.bnf.__str__())
-            #print(self._service.bnf
-            #self._draw_rule(self._service.bnf.rules)
             
         self.canvas.grid(row=1, column=1)
         

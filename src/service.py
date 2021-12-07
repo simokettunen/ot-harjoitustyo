@@ -45,8 +45,8 @@ class Service():
                         symbol.label,
                     )
 
-    def load_bnf(self, id):
-        bnfs = self._database.fetch_bnf(id)
+    def load_bnf(self, bnf_id):
+        bnfs = self._database.fetch_bnf(bnf_id)
 
         if len(bnfs) == 0:
             return

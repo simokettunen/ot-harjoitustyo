@@ -1,12 +1,12 @@
 import uuid
 
 class Symbol():
-    def __init__(self, symbol_label, symbol_type, sequence_id, id=None):
-        if id is None:
+    def __init__(self, symbol_label, symbol_type, sequence_id, symbol_id=None):
+        if symbol_id is None:
             self.id = str(uuid.uuid4())
         else:
-            self.id = id
-            
+            self.id = symbol_id
+
         self.sequence_id = sequence_id
         self.label = symbol_label
         self.type = symbol_type
