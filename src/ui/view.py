@@ -14,10 +14,10 @@ class View:
         self._frame.destroy()
         
 class StartView(View):
-    def __init__(self, root, command, database):
+    def __init__(self, root, command, service):
         
         super().__init__(root)
-        self._database = database
+        self._service = service
         
         button_new_model = ttk.Button(
             master=self._frame,
@@ -32,7 +32,7 @@ class StartView(View):
 
         dropdown_variable = StringVar()
         dropdown_variable.set('')
-        options = [item[0] for item in self._database.fetch_all_bnfs()]
+        options = self._service.get_list_of_bnfs()
         dropdown_load_model = OptionMenu(
             self._frame,
             dropdown_variable,
@@ -46,10 +46,10 @@ class StartView(View):
         self._frame.pack()
         
 class EditModeView(View):
-    def __init__(self, root, database):
+    def __init__(self, root, service):
         super().__init__(root)
         self._bnf = None
-        self._database = database
+        self._service = service
         
         button_draw = ttk.Button(
             master=self._frame,
@@ -180,4 +180,4 @@ class EditModeView(View):
             
     def _handle_save_button_click(self):
         if self._bnf:
-            self._database.add_bnf(self._bnf.id)
+            self._service.add_bnf(self._bnf)
