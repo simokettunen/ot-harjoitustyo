@@ -1,5 +1,4 @@
 from tkinter import ttk, Text, Canvas, OptionMenu, StringVar
-from entities.bnf import check_syntax, BNF
 
 def get_bnfs():
     bnf_list = fetch_all_bnfs()
@@ -164,12 +163,10 @@ class EditModeView(View):
             self.syntax_error_label.destroy()
         
         input = self.textarea.get('1.0', 'end-1c')
-        self.is_correct_syntax = check_syntax(input)
+        self.is_correct_syntax = self._service.create_bnf(input)
         
         if self.is_correct_syntax:
-            self._bnf = BNF()
-            self._bnf.create_from_string(input)
-            self._draw_rule(self._bnf.rules)
+            self._draw_rule(self._service.bnf.rules)
         else:
             self.syntax_error_label = ttk.Label(
                 master=self._frame,
@@ -179,5 +176,4 @@ class EditModeView(View):
             self.syntax_error_label.grid(row=2, column=0)
             
     def _handle_save_button_click(self):
-        if self._bnf:
-            self._service.add_bnf(self._bnf)
+        self._service.save_bnf()
