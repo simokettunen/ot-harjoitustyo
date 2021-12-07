@@ -9,7 +9,9 @@ from entities.bnf import BNF
 
 class TestDatabase(unittest.TestCase):
     def setUp(self):
-        os.remove('temp.db')
+        if os.path.isfile('temp.db'):
+            os.remove('temp.db')
+            
         self.id = str(uuid.uuid4())
         self.database = Database('temp.db')
     
