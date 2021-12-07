@@ -30,20 +30,23 @@ class StartView(View):
             text='Load model',
             command=self._handle_load_button_click
         )
-
-        self._dropdown_variable = StringVar()
-        self._dropdown_variable.set('')
-        options = self._service.get_list_of_bnfs()
-        dropdown_load_model = OptionMenu(
-            self._frame,
-            self._dropdown_variable,
-            *options,
-        )
         
         button_new_model.pack()
-        button_load_model.pack()
-        dropdown_load_model.pack()
+
+        options = self._service.get_list_of_bnfs()
         
+        if len(options) > 0:
+            self._dropdown_variable = StringVar()
+            self._dropdown_variable.set('')
+        
+            dropdown_load_model = OptionMenu(
+                self._frame,
+                self._dropdown_variable,
+                *options,
+            )
+            button_load_model.pack()
+            dropdown_load_model.pack()
+            
         self._frame.pack()
 
     def _handle_load_button_click(self):
@@ -66,7 +69,7 @@ class EditModeView(View):
         
         button_save = ttk.Button(
             master=self._frame,
-            text='Save',
+            text='Save drawn model',
             command=self._handle_save_button_click,
         )
         button_save.grid(row=0, column=1)
