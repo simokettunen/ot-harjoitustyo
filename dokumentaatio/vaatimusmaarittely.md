@@ -13,7 +13,7 @@ Erillisiä käyttäjärooleja ei sovelluksessa ole.
 Ohjelmassa on graafinen käytttöliittymä. Alustavasti ohjelmalla pystyy toteuttamaan seuraavat ydintoiminnot:
 
 * aloitusruutu
-    * käyttäjä pystyy lataamaan aiemmin luodun BNF-mallin tietokannasta
+    * **tehty** käyttäjä pystyy lataamaan aiemmin luodun BNF-mallin tietokannasta
     * **tehty** käyttäjä pystyy aloittamaan uuden BNF-mallin määrittelyn tyhjälle pohjalle
 
 * BNF-mallin muokkaustila
@@ -25,7 +25,7 @@ Ohjelmassa on graafinen käytttöliittymä. Alustavasti ohjelmalla pystyy toteut
         * **tehty** virheilmoitus mikäli määrittelyssä on syntaksivirhe
 
 * BNF-mallin tallennus
-    * käyttäjä pystyy tallentamaan luodun BNF-mallin tietokantaan
+    * **tehty** käyttäjä pystyy tallentamaan luodun BNF-mallin tietokantaan
     * ohjelma varoittaa mikäli käyttäjä yrittää sulkea ohjelman eikä muokattua mallia ole tallennettu
   
 ## Ohjelman jatkokehitysideat
@@ -37,3 +37,4 @@ Ohjelman ydintoiminallisuuden jälkeen mahdollisesti kehitettäviä toimintoja
 * BNF-mallin vienti kuvatiedostoksi
 * BNF-mallin vienti sopivaan tekstiformaattiin, esim. JSON
 * BNF-mallin lukeminen sopivasta tekstiformaatista, esim. JSON
+* BNF-mallin poistaminen tietokannasta
