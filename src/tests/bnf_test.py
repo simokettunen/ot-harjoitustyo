@@ -54,6 +54,21 @@ class TestBNF(unittest.TestCase):
         result = check_syntax(text)
         self.assertTrue(result)
         
+    def test_str_returns_bnf_model_consisting_of_single_rule_correctly(self):
+        bnf = BNF()
+        bnf.create_from_string('a ::= <b> | "c"')
+        
+        self.assertEqual(bnf.__str__(), 'a ::= <b> | "c"')
+        
+    def test_str_returns_bnf_model_consisting_of_two_rules_correctly(self):
+        bnf = BNF()
+        text = 'a ::= <b> | "c"'
+        text += '\n'
+        text += 'b ::= "e"'
+        bnf.create_from_string(text)
+        
+        self.assertEqual(bnf.__str__(), 'a ::= <b> | "c"\nb ::= "e"')
+        
     def test_bnf_model_consisting_of_single_rule_is_handled_correctly(self):
         bnf = BNF()
         bnf.create_from_string('a ::= <b> | "c"')

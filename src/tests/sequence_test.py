@@ -5,6 +5,16 @@ from entities.sequence import Sequence
 class TestSequence(unittest.TestCase):
     def setUp(self):
         self.id = str(uuid.uuid4())
+        
+    def test_str_returns_sequence_consisting_of_single_symbol_correctly(self):
+        sequence = Sequence(['"a"'], self.id)
+        
+        self.assertEqual(sequence.__str__(), '"a"')
+        
+    def test_str_returns_sequence_consisting_of_two_symbols_correctly(self):
+        sequence = Sequence(['"a"', '<b>'], self.id)
+        
+        self.assertEqual(sequence.__str__(), '"a" <b>')
     
     def test_sequence_consisting_of_single_terminal_is_constructed_correctly(self):
         sequence = Sequence(['"a"'], self.id)
