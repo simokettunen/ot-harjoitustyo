@@ -62,6 +62,11 @@ class Database:
         cur.execute('SELECT * FROM bnf WHERE id=?', (bnf_id,))
         return cur.fetchall()
 
+    def fetch_all_bnfs(self):
+        cur = self._con.cursor()
+        cur.execute('SELECT * FROM bnf')
+        return cur.fetchall()
+
     def fetch_rule(self, rule_id):
         cur = self._con.cursor()
         cur.execute('SELECT * FROM rule WHERE id=?', (rule_id,))

@@ -1,5 +1,9 @@
-from tkinter import ttk, Text, Canvas
+from tkinter import ttk, Text, Canvas, OptionMenu, StringVar
 from entities.bnf import check_syntax, BNF
+
+def get_bnfs():
+    bnf_list = fetch_all_bnfs()
+    print(bnf_list)
 
 class View:
     def __init__(self, root):
@@ -10,35 +14,56 @@ class View:
         self._frame.destroy()
         
 class StartView(View):
-    def __init__(self, root, command):
+    def __init__(self, root, command, database):
         
         super().__init__(root)
+        self._database = database
         
-        button1 = ttk.Button(
-            master=self._frame,
-            text='Load model',
-        )
-        
-        button2 = ttk.Button(
+        button_new_model = ttk.Button(
             master=self._frame,
             text='New model',
             command=command,
         )
-        button1.pack()
-        button2.pack()
+        
+        button_load_model = ttk.Button(
+            master=self._frame,
+            text='Load model',
+        )
+
+        dropdown_variable = StringVar()
+        dropdown_variable.set('')
+        options = [item[0] for item in self._database.fetch_all_bnfs()]
+        dropdown_load_model = OptionMenu(
+            self._frame,
+            dropdown_variable,
+            *options,
+        )
+        
+        button_new_model.pack()
+        button_load_model.pack()
+        dropdown_load_model.pack()
         
         self._frame.pack()
         
 class EditModeView(View):
-    def __init__(self, root):
+    def __init__(self, root, database):
         super().__init__(root)
+        self._bnf = None
+        self._database = database
         
-        button = ttk.Button(
+        button_draw = ttk.Button(
             master=self._frame,
             text='Draw',
-            command=self._handle_button_click,
+            command=self._handle_draw_button_click,
         )
-        button.grid(row=0, column=0)
+        button_draw.grid(row=0, column=0)
+        
+        button_save = ttk.Button(
+            master=self._frame,
+            text='Save',
+            command=self._handle_save_button_click,
+        )
+        button_save.grid(row=0, column=1)
         
         self.textarea = Text(
             master=self._frame,
@@ -134,7 +159,7 @@ class EditModeView(View):
         for line in rule:
             y = self._draw_line(line, y)
         
-    def _handle_button_click(self):
+    def _handle_draw_button_click(self):
         if not self.is_correct_syntax:
             self.syntax_error_label.destroy()
         
@@ -142,9 +167,9 @@ class EditModeView(View):
         self.is_correct_syntax = check_syntax(input)
         
         if self.is_correct_syntax:
-            bnf = BNF()
-            bnf.create_from_string(input)
-            self._draw_rule(bnf.rules)
+            self._bnf = BNF()
+            self._bnf.create_from_string(input)
+            self._draw_rule(self._bnf.rules)
         else:
             self.syntax_error_label = ttk.Label(
                 master=self._frame,
@@ -152,3 +177,7 @@ class EditModeView(View):
             )
         
             self.syntax_error_label.grid(row=2, column=0)
+            
+    def _handle_save_button_click(self):
+        if self._bnf:
+            self._database.add_bnf(self._bnf.id)

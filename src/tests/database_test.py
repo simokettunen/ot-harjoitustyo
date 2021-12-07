@@ -1,3 +1,4 @@
+import os
 import unittest
 import uuid
 from database import Database
@@ -8,6 +9,7 @@ from entities.bnf import BNF
 
 class TestDatabase(unittest.TestCase):
     def setUp(self):
+        os.remove('temp.db')
         self.id = str(uuid.uuid4())
         self.database = Database('temp.db')
     
@@ -38,10 +40,21 @@ class TestDatabase(unittest.TestCase):
         
         self.assertTupleEqual(result, (rule.id, rule.bnf_id, rule.symbol))
 
-    def test_adding_bnf_to_database_work_correctly(self):
+    def test_adding_bnf_to_database_works_correctly(self):
         bnf = BNF()
         bnf.create_from_string('a ::= <b>')
         self.database.add_bnf(bnf.id)
         result = self.database.fetch_bnf(bnf.id)[0]
         
         self.assertTupleEqual(result, (bnf.id,))
+        
+    def test_fetching_all_bnfs_from_database_works_correctly(self):
+        bnf1 = BNF()
+        bnf2 = BNF()
+        bnf1.create_from_string('a ::= <b>')
+        bnf2.create_from_string('b ::= <c>')
+        self.database.add_bnf(bnf1.id)
+        self.database.add_bnf(bnf2.id)
+        result = self.database.fetch_all_bnfs()
+        
+        self.assertListEqual(result, [(bnf1.id,), (bnf2.id,)])

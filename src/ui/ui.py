@@ -2,20 +2,21 @@ from tkinter import Tk
 from ui.view import EditModeView, StartView
 
 class UI:
-    def __init__(self):
+    def __init__(self, database):
         self._root = Tk()
         self._current_view = None
         self._root.geometry('1280x720')
+        self._database = database
         
         self._show_start_view()
         
     def _show_edit_mode_view(self):
         self._hide_current_view()
-        self._current_view = EditModeView(self._root)
+        self._current_view = EditModeView(self._root, self._database)
         
     def _show_start_view(self):
         self._hide_current_view()
-        self._current_view = StartView(self._root, self._show_edit_mode_view)
+        self._current_view = StartView(self._root, self._show_edit_mode_view, self._database)
     
     def _hide_current_view(self):
         if self._current_view:
