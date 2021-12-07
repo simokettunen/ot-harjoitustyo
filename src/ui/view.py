@@ -17,24 +17,26 @@ class StartView(View):
         
         super().__init__(root)
         self._service = service
+        self._command = command
         
         button_new_model = ttk.Button(
             master=self._frame,
             text='New model',
-            command=command,
+            command=self._command,
         )
         
         button_load_model = ttk.Button(
             master=self._frame,
             text='Load model',
+            command=self._handle_load_button_click
         )
 
-        dropdown_variable = StringVar()
-        dropdown_variable.set('')
+        self._dropdown_variable = StringVar()
+        self._dropdown_variable.set('')
         options = self._service.get_list_of_bnfs()
         dropdown_load_model = OptionMenu(
             self._frame,
-            dropdown_variable,
+            self._dropdown_variable,
             *options,
         )
         
@@ -43,6 +45,11 @@ class StartView(View):
         dropdown_load_model.pack()
         
         self._frame.pack()
+
+    def _handle_load_button_click(self):
+        bnf_id = self._dropdown_variable.get()
+        self._service.load_bnf(bnf_id)
+        self._command()
         
 class EditModeView(View):
     def __init__(self, root, service):
@@ -79,6 +86,11 @@ class EditModeView(View):
             bg='white'
         )
         
+        if self._service.bnf:
+            self.textarea.insert('end-1c', self._service.bnf.__str__())
+            #print(self._service.bnf
+            #self._draw_rule(self._service.bnf.rules)
+            
         self.canvas.grid(row=1, column=1)
         
         self._frame.pack()

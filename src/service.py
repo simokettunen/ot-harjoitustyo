@@ -1,4 +1,8 @@
 from entities.bnf import BNF, check_syntax
+from entities.rule import Rule
+from entities.sequence import Sequence
+from entities.symbol import Symbol
+
 
 class Service():
     def __init__(self, database):
@@ -40,6 +44,36 @@ class Service():
                         symbol.type,
                         symbol.label,
                     )
+
+    def load_bnf(self, id):
+        bnfs = self._database.fetch_bnf(id)
+
+        if len(bnfs) == 0:
+            return
+
+        bnf = bnfs[0]
+        bnf_id = bnf[0]
+
+        self.bnf = BNF(bnf_id)
+        rules = self._database.fetch_all_rules(bnf_id)
+
+        for rule_data in rules:
+            rule_id = rule_data[0]
+            rule = Rule(rule_data[2], [], rule_data[1], rule_data[0])
+            self.bnf.rules.append(rule)
+
+            sequences = self._database.fetch_all_sequences(rule_id)
+
+            for sequence_data in sequences:
+                sequence_id = sequence_data[0]
+                sequence = Sequence([], sequence_data[1], sequence_data[0])
+                rule.sequences.append(sequence)
+
+                symbols = self._database.fetch_all_symbols(sequence_id)
+
+                for symbol_data in symbols:
+                    symbol = Symbol(symbol_data[3], symbol_data[2], symbol_data[1], symbol_data[0])
+                    sequence.symbols.append(symbol)
 
     def get_list_of_bnfs(self):
         items = [item[0] for item in self._database.fetch_all_bnfs()]

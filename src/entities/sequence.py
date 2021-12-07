@@ -2,8 +2,12 @@ import uuid
 from entities.symbol import Symbol
 
 class Sequence():
-    def __init__(self, symbols, rule_id):
-        self.id = str(uuid.uuid4())
+    def __init__(self, symbols, rule_id, id=None):
+        if id is None:
+            self.id = str(uuid.uuid4())
+        else:
+            self.id = id
+
         self.rule_id = rule_id
         self.symbols = []
         self._init_sequence(symbols)
@@ -12,7 +16,10 @@ class Sequence():
         string = ''
 
         for symbol in self.symbols:
-            string += f'{symbol.__str__()} '
+            if len(string) == 0:
+                string += f'{symbol.__str__()}'
+            else:
+                string += f' {symbol.__str__()}'
 
         return string
 

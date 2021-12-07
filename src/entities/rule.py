@@ -2,8 +2,12 @@ import uuid
 from entities.sequence import Sequence
 
 class Rule():
-    def __init__(self, symbol, sequences, bnf_id):
-        self.id = str(uuid.uuid4())
+    def __init__(self, symbol, sequences, bnf_id, id=None):
+        if id is None:
+            self.id = str(uuid.uuid4())
+        else:
+            id = id
+            
         self.bnf_id = bnf_id
         self.symbol = symbol
         self.sequences = []
@@ -12,8 +16,13 @@ class Rule():
     def __str__(self):
         string = f'{self.symbol} ::= '
 
+        flag_for_first = True
         for sequence in self.sequences:
-            string += sequence.__str__()
+            if flag_for_first:
+                string += sequence.__str__()
+                flag_for_first = False
+            else:
+                string += f' | {sequence.__str__()}'
 
         return string
 

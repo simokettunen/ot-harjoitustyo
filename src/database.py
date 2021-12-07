@@ -72,14 +72,29 @@ class Database:
         cur.execute('SELECT * FROM rule WHERE id=?', (rule_id,))
         return cur.fetchall()
 
+    def fetch_all_rules(self, bnf_id):
+        cur = self._con.cursor()
+        cur.execute('SELECT * FROM rule WHERE bnf=?', (bnf_id,))
+        return cur.fetchall()
+
     def fetch_sequence(self, sequence_id):
         cur = self._con.cursor()
         cur.execute('SELECT * FROM sequence WHERE id=?', (sequence_id,))
         return cur.fetchall()
 
+    def fetch_all_sequences(self, rule_id):
+        cur = self._con.cursor()
+        cur.execute('SELECT * FROM sequence WHERE rule=?', (rule_id,))
+        return cur.fetchall()
+
     def fetch_symbol(self, symbol_id):
         cur = self._con.cursor()
         cur.execute('SELECT * FROM symbol WHERE id=?', (symbol_id,))
+        return cur.fetchall()
+
+    def fetch_all_symbols(self, sequence_id):
+        cur = self._con.cursor()
+        cur.execute('SELECT * FROM symbol WHERE sequence=?', (sequence_id,))
         return cur.fetchall()
 
     def close_connection(self):
