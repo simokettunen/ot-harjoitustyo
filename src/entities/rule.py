@@ -14,7 +14,7 @@ class Rule():
         self._init_sequences(sequences)
 
     def __str__(self):
-        string = f'{self.symbol} ::= '
+        string = f'<{self.symbol}> ::= '
 
         flag_for_first = True
         for sequence in self.sequences:

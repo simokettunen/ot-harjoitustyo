@@ -9,12 +9,12 @@ class TestRule(unittest.TestCase):
     def test_str_returns_rule_consisting_of_single_sequence_correctly(self):
         rule = Rule('a', ['<b>'], self.id)
         
-        self.assertEqual(rule.__str__(), 'a ::= <b>')
+        self.assertEqual(rule.__str__(), '<a> ::= <b>')
         
     def test_str_returns_rule_consisting_of_two_sequences_correctly(self):
         rule = Rule('a', ['<b>', '"c"'], self.id)
         
-        self.assertEqual(rule.__str__(), 'a ::= <b> | "c"')
+        self.assertEqual(rule.__str__(), '<a> ::= <b> | "c"')
        
     def test_rule_consisting_of_single_sequence_is_constructed_correctly(self):
         # a ::= <b>

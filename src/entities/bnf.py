@@ -40,9 +40,12 @@ class BNF():
 
     def create_from_string(self, string):
         """Create a BNF model from the given input string"""
+
+        # TODO: Consider adding syntax check here
+
         lines = string.split('\n')
 
         for line in lines:
             line = line.split(' ::= ')
-            rule = Rule(line[0], line[1].split(' | '), self.id)
+            rule = Rule(line[0][1:-1], line[1].split(' | '), self.id)
             self.rules.append(rule)
