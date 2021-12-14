@@ -99,3 +99,21 @@ class TestBNF(unittest.TestCase):
         self.assertEqual(bnf.rules[1].sequences[0].symbols[0].label, 'e')
         self.assertEqual(bnf.rules[1].sequences[0].symbols[0].type, 'terminal')
         self.assertEqual(bnf.rules[1].bnf_id, bnf.id)
+        
+    def test_bnf_unassigned_terminals_check_returns_true_if_no_unassigned_terminals_appear(self):
+        bnf = BNF()
+        text = '<a> ::= <b> | "c"'
+        text += '\n'
+        text += '<b> ::= "e"'
+        bnf.create_from_string(text)
+        
+        self.assertTrue(bnf.check_unassigned_nonterminals())
+        
+    def test_bnf_unassigned_terminals_check_recognizes_unassigned_terminal(self):
+        bnf = BNF()
+        text = '<a> ::= <d> | "c"'
+        text += '\n'
+        text += '<b> ::= "e"'
+        bnf.create_from_string(text)
+        
+        self.assertFalse(bnf.check_unassigned_nonterminals())

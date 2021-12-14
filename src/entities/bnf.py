@@ -49,3 +49,20 @@ class BNF():
             line = line.split(' ::= ')
             rule = Rule(line[0][1:-1], line[1].split(' | '), self.id)
             self.rules.append(rule)
+
+    def check_unassigned_nonterminals(self):
+        assigned_nonterminals = set()
+        for rule in self.rules:
+            assigned_nonterminals.add(rule.symbol)
+
+        nonterminals = set()
+        for rule in self.rules:
+            for sequence in rule.sequences:
+                for symbol in sequence.symbols:
+                    if symbol.type == 'non-terminal':
+                        nonterminals.add(symbol.label)
+
+        if len(nonterminals - assigned_nonterminals) == 0:
+            return True
+
+        return False

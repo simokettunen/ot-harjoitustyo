@@ -59,6 +59,7 @@ class EditModeView(View):
         super().__init__(root)
         self._bnf = None
         self._service = service
+        self.syntax_error_label = None
         
         button_draw = ttk.Button(
             master=self._frame,
@@ -81,6 +82,7 @@ class EditModeView(View):
         self.textarea.grid(row=1, column=0)
         
         self.is_correct_syntax = True
+        self.no_unassigned_nonterminals = True
         
         self.canvas = Canvas(
             master=self._frame,
@@ -172,14 +174,27 @@ class EditModeView(View):
             y = self._draw_line(line, y)
         
     def _handle_draw_button_click(self):
-        if not self.is_correct_syntax:
+
+        # TODO: refactor this method
+
+        if self.syntax_error_label:
             self.syntax_error_label.destroy()
         
         input = self.textarea.get('1.0', 'end-1c')
         self.is_correct_syntax = self._service.create_bnf(input)
+        self.no_unassigned_nonterminals = True
         
         if self.is_correct_syntax:
             self._draw_rule(self._service.bnf.rules)
+            self.no_unassigned_nonterminals = self._service.bnf.check_unassigned_nonterminals()
+            
+            if not self.no_unassigned_nonterminals:
+                self.syntax_error_label = ttk.Label(
+                    master=self._frame,
+                    text='Unassigned non-terminal appears in the model',
+                )
+            
+                self.syntax_error_label.grid(row=2, column=0)
         else:
             self.syntax_error_label = ttk.Label(
                 master=self._frame,
