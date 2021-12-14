@@ -21,7 +21,7 @@ Ohjelmassa on graafinen käytttöliittymä. Alustavasti ohjelmalla pystyy toteut
     * **tehty** käyttäjä pystyy visualisoimaan tekstiruutuun kirjoitetun tekstin, jolloin ohjelma piirtää syntaksin mukaiset kaaviot
         * **tehty** tapahtuu painiketta painamalla, ei piirrä reaaliaikaisesti
     * **tehty** ohjelma tarkistaa käyttäjän laatiman määrittelyn BNF-mallin oikeellisuuden ja ilmoittaa mahdollisesta virheestä
-        * varoitus mikäli käyttäjä viittaa lausekkeeseen jota ei ole olemassa
+        * **tehty** varoitus mikäli käyttäjä viittaa lausekkeeseen jota ei ole olemassa
         * **tehty** virheilmoitus mikäli määrittelyssä on syntaksivirhe
 
 * BNF-mallin tallennus
