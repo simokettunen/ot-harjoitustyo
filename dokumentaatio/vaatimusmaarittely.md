@@ -16,11 +16,11 @@ Ohjelmassa on graafinen käytttöliittymä. Alustavasti ohjelmalla pystyy toteut
     * **tehty** käyttäjä pystyy lataamaan aiemmin luodun BNF-mallin tietokannasta
     * **tehty** käyttäjä pystyy aloittamaan uuden BNF-mallin määrittelyn tyhjälle pohjalle
 
-* BNF-mallin muokkaustila
+* **tehty** BNF-mallin muokkaustila
     * **tehty** käyttäjä pystyy kirjoittamaan BNF-syntaksin mukaisen määrittelyn tekstiruutuun
     * **tehty** käyttäjä pystyy visualisoimaan tekstiruutuun kirjoitetun tekstin, jolloin ohjelma piirtää syntaksin mukaiset kaaviot
         * **tehty** tapahtuu painiketta painamalla, ei piirrä reaaliaikaisesti
-    * ohjelma tarkistaa käyttäjän laatiman määrittelyn BNF-mallin oikeellisuuden ja ilmoittaa mahdollisesta virheestä
+    * **tehty** ohjelma tarkistaa käyttäjän laatiman määrittelyn BNF-mallin oikeellisuuden ja ilmoittaa mahdollisesta virheestä
         * varoitus mikäli käyttäjä viittaa lausekkeeseen jota ei ole olemassa
         * **tehty** virheilmoitus mikäli määrittelyssä on syntaksivirhe
 
