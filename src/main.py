@@ -3,7 +3,8 @@ from database import Database
 from service import Service
 
 def main():
-    """Run the mainloop of the program"""
+    """Runs the mainloop of the application"""
+
     database = Database('test.db')
     service = Service(database)
     app = UI(service)

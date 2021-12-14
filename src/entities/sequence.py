@@ -2,7 +2,23 @@ import uuid
 from entities.symbol import Symbol
 
 class Sequence():
+    """  Class presenting a sequence in a rule
+
+    Attributes:
+        id: UUID of the sequence
+        rule_id: UUID of rule in which the sequence belongs to
+        sequences: list of symbols in the rule
+    """
+
     def __init__(self, symbols, rule_id, sequence_id=None):
+        """ Constuctor of class Rule
+
+        Args:
+            symbols: string that is used to create symbols of the sequence
+            rule_id: UUID of rule in which sequence belongs to
+            sequence_id: UUID of the sequence, default is None
+        """
+
         if sequence_id is None:
             self.id = str(uuid.uuid4())
         else:
@@ -13,6 +29,12 @@ class Sequence():
         self._init_sequence(symbols)
 
     def __str__(self):
+        """ Returns a string presentation of class Sequence
+
+        Returns:
+            string presentation of sequence object
+        """
+
         string = ''
 
         for symbol in self.symbols:

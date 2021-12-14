@@ -3,7 +3,15 @@ import uuid
 from entities.rule import Rule
 
 def check_syntax(text):
-    """Check if the given collection of BNF rules has correct syntax."""
+    """Checks if the given collection of BNF rules has correct syntax.
+
+    Args:
+        text: string that is checked
+
+    Returns:
+        True, if string passes syntax check
+    """
+
     lines = text.split('\n')
 
     prog = re.compile(r'^<[a-z]+> ::= ((<[a-z]+>|"[a-z]+")( (<[a-z]+>|"[a-z]+"))*)( \| (<[a-z]+>|"[a-z]+")( (<[a-z]+>|"[a-z]+"))*)*$')
@@ -19,7 +27,20 @@ def check_syntax(text):
     return True
 
 class BNF():
+    """  Class presenting a BNF model
+
+    Attributes:
+        rules: list of rules in the BNF model
+        id: UUID of the model
+    """
+
     def __init__(self, bnf_id=None):
+        """ Constructor of class BNF
+
+        Args:
+            bnf_id: UUID of BNF, default is None
+        """
+
         self.rules = []
 
         if bnf_id is None:
@@ -28,6 +49,12 @@ class BNF():
             self.id = bnf_id
 
     def __str__(self):
+        """ Returns a string presentation of class BNF
+
+        Returns:
+            string presentation of BNF object
+        """
+
         string = ''
 
         for rule in self.rules:
@@ -39,7 +66,11 @@ class BNF():
         return string
 
     def create_from_string(self, string):
-        """Create a BNF model from the given input string"""
+        """ Creates a BNF model from the given input string
+
+        Args:
+            string: string that is used in creating a BNF object
+        """
 
         # TODO: Consider adding syntax check here
 
@@ -51,6 +82,12 @@ class BNF():
             self.rules.append(rule)
 
     def check_unassigned_nonterminals(self):
+        """ Checks if BNF model has unassigned nonterminals
+
+        Returns:
+            True, if none unassigned nonterminals appears in the BNF model
+        """
+
         assigned_nonterminals = set()
         for rule in self.rules:
             assigned_nonterminals.add(rule.symbol)
