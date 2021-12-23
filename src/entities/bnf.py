@@ -74,9 +74,15 @@ class BNF():
 
         # TODO: Consider adding syntax check here
 
+        if string == '':
+            return
+
         lines = string.split('\n')
 
         for line in lines:
+            if line == '':
+                continue
+        
             line = line.split(' ::= ')
             rule = Rule(line[0][1:-1], line[1].split(' | '), self.id)
             self.rules.append(rule)
@@ -103,3 +109,4 @@ class BNF():
             return True
 
         return False
+
