@@ -111,14 +111,11 @@ class EditModeView(View):
             text_bbox = self.canvas.bbox(text)
             text_width = text_bbox[2] - text_bbox[0]
             
-            y1 = y - 10
-            y2 = y + 10
-            
             if type == 'non-terminal':
                 # label box right side
                 x2 = cum_x + margin + text_width + margin
                 
-                self.canvas.create_rectangle(cum_x, y1-10, x2, y+10, outline='#000000')
+                self.canvas.create_rectangle(cum_x, y-10, x2, y+10, outline='#000000')
             elif type == 'terminal':
                 # label box right side
                 x2 = cum_x + max(margin + text_width + margin, 20)
