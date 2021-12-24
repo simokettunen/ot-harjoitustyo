@@ -2,7 +2,7 @@ import uuid
 from entities.sequence import Sequence
 
 class Rule():
-    """  Class presenting a rule in BNF model
+    """Class presenting a rule in BNF model.
 
     Attributes:
         id: UUID of the rule
@@ -12,7 +12,7 @@ class Rule():
     """
 
     def __init__(self, symbol, sequences, bnf_id, rule_id=None):
-        """ Constuctor of class Rule
+        """Constuctor of class Rule.
 
         Args:
             symbol: specifier of the rule, i.e. symbol on the left in the rule
@@ -32,10 +32,10 @@ class Rule():
         self._init_sequences(sequences)
 
     def __str__(self):
-        """ Returns a string presentation of class Rule
+        """Returns a string presentation of class Rule.
 
         Returns:
-            string presentation of rule object
+            String presentation of rule object
         """
 
         string = f'<{self.symbol}> ::= '

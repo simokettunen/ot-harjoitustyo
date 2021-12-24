@@ -1,7 +1,7 @@
 import uuid
 
 class Symbol():
-    """  Class presenting a sequence in a rule
+    """Class presenting a sequence in a rule.
 
     Attributes:
         id: UUID of the symbol
@@ -11,7 +11,7 @@ class Symbol():
     """
 
     def __init__(self, symbol_label, symbol_type, sequence_id, symbol_id=None):
-        """ Constuctor of class Symbol
+        """Constuctor of class Symbol.
 
         Args:
             symbol_label: label of the symbol
@@ -30,6 +30,11 @@ class Symbol():
         self.type = symbol_type
 
     def __str__(self):
+        """Returns a string presentation of class Symbol.
+
+        Returns:
+            String presentation of symbol object
+        """
         if self.type == 'non-terminal':
             return f'<{self.label}>'
 

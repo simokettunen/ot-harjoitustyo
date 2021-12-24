@@ -10,11 +10,15 @@ def check_syntax(text):
 
     Returns:
         True, if string passes syntax check
+        False, if string doesn't pass syntax check
     """
 
     lines = text.split('\n')
 
-    prog = re.compile(r'^<[a-z]+> ::= ((<[a-z]+>|"[a-z]+")( (<[a-z]+>|"[a-z]+"))*)( \| (<[a-z]+>|"[a-z]+")( (<[a-z]+>|"[a-z]+"))*)*$')
+    prog = re.compile(
+        r'^<[a-z]+> ::= ((<[a-z]+>|"[a-z]+")( (<[a-z]+>|"[a-z]+"))*) \
+        ( \| (<[a-z]+>|"[a-z]+")( (<[a-z]+>|"[a-z]+"))*)*$'
+    )
 
     for line in lines:
 
@@ -27,7 +31,7 @@ def check_syntax(text):
     return True
 
 class BNF():
-    """  Class presenting a BNF model
+    """ Class presenting a BNF model.
 
     Attributes:
         rules: list of rules in the BNF model
@@ -35,7 +39,7 @@ class BNF():
     """
 
     def __init__(self, bnf_id=None):
-        """ Constructor of class BNF
+        """Constructor of class BNF.
 
         Args:
             bnf_id: UUID of BNF, default is None
@@ -49,10 +53,10 @@ class BNF():
             self.id = bnf_id
 
     def __str__(self):
-        """ Returns a string presentation of class BNF
+        """Returns a string presentation of class BNF.
 
         Returns:
-            string presentation of BNF object
+            String presentation of BNF object
         """
 
         string = ''
@@ -66,13 +70,11 @@ class BNF():
         return string
 
     def create_from_string(self, string):
-        """ Creates a BNF model from the given input string
+        """Creates a BNF model from the given input string.
 
         Args:
-            string: string that is used in creating a BNF object
+            String: string that is used in creating a BNF object
         """
-
-        # TODO: Consider adding syntax check here
 
         if string == '':
             return
@@ -82,16 +84,17 @@ class BNF():
         for line in lines:
             if line == '':
                 continue
-        
+
             line = line.split(' ::= ')
             rule = Rule(line[0][1:-1], line[1].split(' | '), self.id)
             self.rules.append(rule)
 
     def check_unassigned_nonterminals(self):
-        """ Checks if BNF model has unassigned nonterminals
+        """Checks if BNF model has unassigned nonterminals.
 
         Returns:
             True, if none unassigned nonterminals appears in the BNF model
+            False, if there are unassigned nonterminals in the BNF model
         """
 
         assigned_nonterminals = set()
@@ -109,4 +112,3 @@ class BNF():
             return True
 
         return False
-
