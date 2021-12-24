@@ -10,7 +10,7 @@ Erillisiä käyttäjärooleja ei sovelluksessa ole.
 
 ## Ohjelman ydintoiminnallisuus
 
-Ohjelmassa on graafinen käytttöliittymä. Alustavasti ohjelmalla pystyy toteuttamaan seuraavat ydintoiminnot:
+Ohjelmassa on graafinen käytttöliittymä. Ohjelmalla pystyy toteuttamaan seuraavat ydintoiminnot:
 
 * aloitusruutu
     * käyttäjä pystyy lataamaan aiemmin luodun BNF-mallin tietokannasta
