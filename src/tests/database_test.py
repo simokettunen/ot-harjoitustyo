@@ -17,7 +17,7 @@ class TestDatabase(unittest.TestCase):
 
     def test_adding_bnf_to_database_works(self):
         bnf = BNF()
-        bnf.create_from_string('a ::= <b>')
+        bnf.create_from_string('<a> ::= <b>')
         self.database.add(bnf)
         result = self.database.fetch_single(bnf.id, 'bnf')[0]
         
@@ -47,8 +47,8 @@ class TestDatabase(unittest.TestCase):
     def test_fetching_all_bnfs_from_database_works(self):
         bnf1 = BNF()
         bnf2 = BNF()
-        bnf1.create_from_string('a ::= <b>')
-        bnf2.create_from_string('b ::= <c>')
+        bnf1.create_from_string('<a> ::= <b>')
+        bnf2.create_from_string('<b> ::= <c>')
         self.database.add(bnf1)
         self.database.add(bnf2)
         result = self.database.fetch_all(None, 'bnf')
@@ -88,7 +88,7 @@ class TestDatabase(unittest.TestCase):
         
     def test_removing_bnf_from_database_works(self):
         bnf = BNF()
-        bnf.create_from_string('a ::= <b>')
+        bnf.create_from_string('<a> ::= <b>')
         self.database.add(bnf)
         self.database.remove(bnf.id, 'bnf')
         result = self.database.fetch_all(bnf.id, 'bnf')
