@@ -1,9 +1,5 @@
 from tkinter import ttk, Text, Canvas, OptionMenu, StringVar
 
-def get_bnfs():
-    bnf_list = fetch_all_bnfs()
-    print(bnf_list)
-
 class View:
     def __init__(self, root):
         self._root = root
