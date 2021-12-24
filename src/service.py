@@ -1,3 +1,4 @@
+import warnings
 from entities.bnf import BNF, check_syntax
 from entities.rule import Rule
 from entities.sequence import Sequence
@@ -44,7 +45,7 @@ class Service():
         if not self.bnf:
             return
 
-        self._database.add(bnf)
+        self._database.add(self.bnf)
 
         for rule in self.bnf.rules:
             self._database.add(rule)
@@ -65,12 +66,14 @@ class Service():
         bnfs = self._database.fetch_single(bnf_id, 'bnf')
 
         if len(bnfs) == 0:
+            warnings.warn(f'No bnf model found with id {bnf_id}')
             return
 
         bnf = bnfs[0]
         bnf_id = bnf[0]
 
-        self.bnf = BNF(bnf_id)
+        self.bnf = BNF(bnf_id) 
+
         rules = self._database.fetch_all(bnf_id, 'rule')
 
         for rule_data in rules:
@@ -91,6 +94,8 @@ class Service():
                     symbol = Symbol(symbol_data[3], symbol_data[2], symbol_data[1], symbol_data[0])
                     sequence.symbols.append(symbol)
                     
+        print(self.bnf)
+                    
     def remove_bnf(self, bnf_id):
         """Removes BNF model from database
         
@@ -98,7 +103,7 @@ class Service():
             bnf_id: UUID of the BNF to be removed
         """
         
-        
+        self._database.remove(bnf_id, 'bnf')
 
     def get_list_of_bnfs(self):
         """ Loads all BNF UUIDs from database
@@ -107,5 +112,5 @@ class Service():
             List of UUIDs of BNF models
         """
 
-        items = [item[0] for item in self._database.fetch_all_bnfs()]
+        items = [item[0] for item in self._database.fetch_all(None, 'bnf')]
         return items
