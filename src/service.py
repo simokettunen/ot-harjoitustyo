@@ -32,7 +32,10 @@ class Service():
         is_correct_syntax = check_syntax(string)
 
         if is_correct_syntax:
-            self.bnf = BNF()
+            if self.bnf:
+                self.bnf = BNF(self.bnf.id)
+            else:
+                self.bnf = BNF()
             self.bnf.create_from_string(string)
 
         return is_correct_syntax
