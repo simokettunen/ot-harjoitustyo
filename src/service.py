@@ -44,28 +44,16 @@ class Service():
         if not self.bnf:
             return
 
-        self._database.add_bnf(self.bnf.id)
+        self._database.add(bnf)
 
         for rule in self.bnf.rules:
-            self._database.add_rule(
-                rule.id,
-                rule.bnf_id,
-                rule.symbol,
-            )
+            self._database.add(rule)
 
             for sequence in rule.sequences:
-                self._database.add_sequence(
-                    sequence.id,
-                    sequence.rule_id,
-                )
+                self._database.add(sequence)
 
                 for symbol in sequence.symbols:
-                    self._database.add_symbol(
-                        symbol.id,
-                        symbol.sequence_id,
-                        symbol.type,
-                        symbol.label,
-                    )
+                    self._database.add(symbol)
 
     def load_bnf(self, bnf_id):
         """ Loads BNF model from database and stores it to service
@@ -74,7 +62,7 @@ class Service():
             bnf_id: UUID of the BNF to be loaded
         """
 
-        bnfs = self._database.fetch_bnf(bnf_id)
+        bnfs = self._database.fetch_single(bnf_id, 'bnf')
 
         if len(bnfs) == 0:
             return
@@ -83,25 +71,34 @@ class Service():
         bnf_id = bnf[0]
 
         self.bnf = BNF(bnf_id)
-        rules = self._database.fetch_all_rules(bnf_id)
+        rules = self._database.fetch_all(bnf_id, 'rule')
 
         for rule_data in rules:
             rule_id = rule_data[0]
             rule = Rule(rule_data[2], [], rule_data[1], rule_data[0])
             self.bnf.rules.append(rule)
 
-            sequences = self._database.fetch_all_sequences(rule_id)
+            sequences = self._database.fetch_all(rule_id, 'sequence')
 
             for sequence_data in sequences:
                 sequence_id = sequence_data[0]
                 sequence = Sequence([], sequence_data[1], sequence_data[0])
                 rule.sequences.append(sequence)
 
-                symbols = self._database.fetch_all_symbols(sequence_id)
+                symbols = self._database.fetch_all(sequence_id, 'symbol')
 
                 for symbol_data in symbols:
                     symbol = Symbol(symbol_data[3], symbol_data[2], symbol_data[1], symbol_data[0])
                     sequence.symbols.append(symbol)
+                    
+    def remove_bnf(self, bnf_id):
+        """Removes BNF model from database
+        
+        Args:
+            bnf_id: UUID of the BNF to be removed
+        """
+        
+        
 
     def get_list_of_bnfs(self):
         """ Loads all BNF UUIDs from database
