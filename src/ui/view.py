@@ -33,7 +33,7 @@ class StartView(View):
         
         if len(options) > 0:
             self._dropdown_variable = StringVar()
-            self._dropdown_variable.set('')
+            self._dropdown_variable.set('Models')
         
             dropdown_load_model = OptionMenu(
                 self._frame,
@@ -94,74 +94,91 @@ class EditModeView(View):
         
         self._frame.pack()
   
-    def _draw_sequence(self, line, sx, y):
+    def _draw_sequence(self, line, cum_x, y):
         
-        k2 = 20
-        margin = 4
+        dx = 20     # distance between label boxes
+        margin = 4  # label box margin
     
         for i in range(len(line.symbols)):
             type = line.symbols[i].type
             label = line.symbols[i].label
         
-            self.canvas.create_line(sx, y, sx + k2, y)
-            sx += k2
+            # from left split to label box
+            self.canvas.create_line(cum_x, y, cum_x + dx, y)
+            cum_x += dx
             
-            a = self.canvas.create_text(sx + margin, y, text=label, anchor='w')
-            
-            text_bbox = self.canvas.bbox(a)
+            text = self.canvas.create_text(cum_x + margin, y, text=label, anchor='w')
+            text_bbox = self.canvas.bbox(text)
             text_width = text_bbox[2] - text_bbox[0]
             
-            x1 = sx
             y1 = y - 10
             y2 = y + 10
             
             if type == 'non-terminal':
-                x2 = sx + margin + text_width + margin
-                self.canvas.create_rectangle(x1, y1, x2, y2, outline='#000000')
-            elif type == 'terminal':
-                x2 = sx + max(margin + text_width + margin, 20)
-                self.canvas.create_oval(x1, y1, x2, y2, outline='#000000')
-            
-            if i == len(line.symbols) - 1:
-                self.canvas.create_line(x2, y, x2+k2, y)
-                sx = x2 + k2
-            else:
-                sx = x2
+                # label box right side
+                x2 = cum_x + margin + text_width + margin
                 
-        return sx
+                self.canvas.create_rectangle(cum_x, y1-10, x2, y+10, outline='#000000')
+            elif type == 'terminal':
+                # label box right side
+                x2 = cum_x + max(margin + text_width + margin, 20)
+                
+                self.canvas.create_oval(cum_x, y-10, x2, y+10, outline='#000000')
+                
+            if i == len(line.symbols) - 1:
+                self.canvas.create_line(x2, y, x2+dx, y)
+                cum_x = x2 + dx
+                
+            else:
+                cum_x = x2
+                
+        return cum_x
         
     def _draw_line(self, rule, y):
-        x = 30
-        r = 5
-        k1 = 15
+        x = 30          # starting distance for left
+        r = 5           # circle radius
+        dx = 15         # distance between circle and split
+        dy = 30         # distance between rows
+        x_cum = x + r   # cumulative x
         
+        # left circle
         self.canvas.create_oval(x-r, y-r, x+r, y+r, fill='#000000')
         
-        sx = x + r
+        # from left circle to left split
+        self.canvas.create_line(x_cum, y, x_cum + dx, y)
         
-        self.canvas.create_line(sx, y, sx + k1, y)
+        x_cum += dx
+        x_cums = []
         
-        sx += k1
-        
-        sxs = []
         for i in range(len(rule.sequences)):
-            sx2 = self._draw_sequence(rule.sequences[i], x+r+k1, y+30*i)
-            self.canvas.create_line(sx, y, sx, y+30*i)
+            x_cum2 = self._draw_sequence(rule.sequences[i], x+r+dx, y+dy*i)
             
-            sxs.append(sx2)
+            # from left split top to left split bottom
+            self.canvas.create_line(x_cum, y, x_cum, y+dy*i)
             
-        sx = max(sxs)
+            x_cums.append(x_cum2)
+            
+        x_cum = max(x_cums)
+        
         for i in range(len(rule.sequences)):
-            self.canvas.create_line(sxs[i], y+30*i, sx, y+30*i)
-            self.canvas.create_line(sx, y+30*i, sx, y)
             
-        self.canvas.create_line(sx, y, sx+k1, y)
+            # from sequence's last label to split
+            self.canvas.create_line(x_cums[i], y+dy*i, x_cum, y+dy*i)
+            
+            # from right split bottom to right split top
+            self.canvas.create_line(x_cum, y+dy*i, x_cum, y)
         
-        self.canvas.create_oval(sx+k1+r-r, y-r, sx+k1+r+r, y+r, fill='#000000')
+        # from right split to right circle
+        self.canvas.create_line(x_cum, y, x_cum+dx, y)
         
-        return y + 30*len(rule.sequences)
+        # right circle
+        self.canvas.create_oval(x_cum+dx+r-r, y-r, x_cum+dx+r+r, y+r, fill='#000000')
         
-    def _draw_rule(self, rule):
+        return y + dy*len(rule.sequences)
+        
+    def _draw_model(self, rule):
+    
+        # starting distance from the top
         y = 30
         
         self.canvas.delete('all')
@@ -181,7 +198,7 @@ class EditModeView(View):
         self.no_unassigned_nonterminals = True
         
         if self.is_correct_syntax:
-            self._draw_rule(self._service.bnf.rules)
+            self._draw_model(self._service.bnf.rules)
             self.no_unassigned_nonterminals = self._service.bnf.check_unassigned_nonterminals()
             
             if not self.no_unassigned_nonterminals:
