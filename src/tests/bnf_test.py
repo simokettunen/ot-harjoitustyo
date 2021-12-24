@@ -69,6 +69,21 @@ class TestBNF(unittest.TestCase):
         
         self.assertEqual(bnf.__str__(), '<a> ::= <b> | "c"\n<b> ::= "e"')
         
+    def test_str_returns_bnf_model_when_string_has_trailing_new_lines(self):
+        bnf = BNF()
+        text = '\n'
+        text += '<a> ::= "b" | "c"'
+        text += '\n'
+        bnf.create_from_string(text)
+        
+        self.assertEqual(bnf.__str__(), '<a> ::= "b" | "c"')
+        
+    def test_create_from_string_works_with_empty_input(self):
+        bnf = BNF()
+        bnf.create_from_string('')
+        
+        self.assertEqual(bnf.__str__(), '')
+        
     def test_bnf_model_consisting_of_single_rule_is_handled_correctly(self):
         bnf = BNF()
         bnf.create_from_string('<a> ::= <b> | "c"')
