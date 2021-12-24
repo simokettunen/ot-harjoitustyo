@@ -44,7 +44,8 @@ class Service():
 
         if not self.bnf:
             return
-
+            
+        self.remove_bnf()    
         self._database.add(self.bnf)
 
         for rule in self.bnf.rules:
@@ -94,16 +95,19 @@ class Service():
                     symbol = Symbol(symbol_data[3], symbol_data[2], symbol_data[1], symbol_data[0])
                     sequence.symbols.append(symbol)
                     
-        print(self.bnf)
+    def remove_bnf(self):
+        """Removes BNF model and all data related it from database."""
+                
+        for rule in self.bnf.rules:
+            for sequence in rule.sequences:
+                for symbol in sequence.symbols:
+                    self._database.remove(symbol.id, 'symbol')
                     
-    def remove_bnf(self, bnf_id):
-        """Removes BNF model from database
-        
-        Args:
-            bnf_id: UUID of the BNF to be removed
-        """
-        
-        self._database.remove(bnf_id, 'bnf')
+                self._database.remove(sequence.id, 'sequence')
+
+            self._database.remove(rule.id, 'rule')
+                   
+        self._database.remove(self.bnf.id, 'bnf')
 
     def get_list_of_bnfs(self):
         """ Loads all BNF UUIDs from database

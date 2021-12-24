@@ -64,7 +64,13 @@ class TestDatabase(unittest.TestCase):
         text = '<a> ::= <b>'
         self.service.create_bnf(text)
         self.service.save_bnf()
-        self.service.remove_bnf(self.service.bnf.id)
-        result = self.database.fetch_all(self.service.bnf.id, 'bnf')
-        self.assertListEqual(result, [])
+        self.service.remove_bnf()
+        result_bnf = self.database.fetch_all(self.service.bnf.id, 'bnf')
+        result_rule = self.database.fetch_all(self.service.bnf.id, 'rule')
+        result_sequence = self.database.fetch_all(self.service.bnf.rules[0].id, 'sequence')
+        result_symbol = self.database.fetch_all(self.service.bnf.rules[0].sequences[0].id, 'symbol')
+        self.assertListEqual(result_bnf, [])
+        self.assertListEqual(result_rule, [])
+        self.assertListEqual(result_sequence, [])
+        self.assertListEqual(result_symbol, [])
         
