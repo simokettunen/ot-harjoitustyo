@@ -10,12 +10,11 @@ Erillisiä käyttäjärooleja ei sovelluksessa ole.
 
 ## Ohjelman ydintoiminnallisuus
 
-Ohjelmassa on graafinen käytttöliittymä. Ohjelmalla pystyy toteuttamaan seuraavat ydintoiminnot:
+Ohjelmassa on graafinen käyttöliittymä. Ohjelmaan on toteuttu seuraavat toiminnallisuudet
 
 * aloitusruutu
     * käyttäjä pystyy lataamaan aiemmin luodun BNF-mallin tietokannasta
     * käyttäjä pystyy aloittamaan uuden BNF-mallin määrittelyn tyhjälle pohjalle
-
 * BNF-mallin muokkaustila
     * käyttäjä pystyy kirjoittamaan BNF-syntaksin mukaisen määrittelyn tekstiruutuun
     * käyttäjä pystyy visualisoimaan tekstiruutuun kirjoitetun tekstin, jolloin ohjelma piirtää syntaksin mukaiset kaaviot
@@ -23,13 +22,12 @@ Ohjelmassa on graafinen käytttöliittymä. Ohjelmalla pystyy toteuttamaan seura
     * ohjelma tarkistaa käyttäjän laatiman määrittelyn BNF-mallin oikeellisuuden ja ilmoittaa mahdollisesta virheestä
         * varoitus mikäli käyttäjä viittaa lausekkeeseen jota ei ole olemassa
         * virheilmoitus mikäli määrittelyssä on syntaksivirhe
-
 * BNF-mallin tallennus
     * käyttäjä pystyy tallentamaan luodun BNF-mallin tietokantaan
   
 ## Ohjelman jatkokehitysideat
 
-Ohjelman ydintoiminallisuuden jälkeen mahdollisesti kehitettäviä toimintoja  
+Ohjelmalle mahdollisia jatkokehitysideoita:
 
 * reaaliaikainen visualisointi
 * yksittäisen BNF-lausekkeiden tallennus ja lataaminen ohjelmaan
