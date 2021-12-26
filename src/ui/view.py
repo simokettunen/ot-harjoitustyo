@@ -9,16 +9,16 @@ class View:
         self._frame.destroy()
         
 class StartView(View):
-    def __init__(self, root, command, service):
+    def __init__(self, root, service, go_to_edit):
         
         super().__init__(root)
         self._service = service
-        self._command = command
+        self._go_to_edit = go_to_edit
         
         button_new_model = ttk.Button(
             master=self._frame,
             text='New model',
-            command=self._command,
+            command=self._go_to_edit,
         )
         
         button_load_model = ttk.Button(
@@ -48,14 +48,22 @@ class StartView(View):
     def _handle_load_button_click(self):
         bnf_id = self._dropdown_variable.get()
         self._service.load_bnf(bnf_id)
-        self._command()
+        self._go_to_edit()
         
 class EditModeView(View):
-    def __init__(self, root, service):
+    def __init__(self, root, service, go_to_start):
         super().__init__(root)
         self._bnf = None
         self._service = service
         self.syntax_error_label = None
+        self._go_to_start = go_to_start
+        
+        button_back = ttk.Button(
+            master=self._frame,
+            text='Back',
+            command=self._go_to_start,
+        )
+        button_back.grid(row=0, column=2)
         
         button_draw = ttk.Button(
             master=self._frame,
@@ -75,7 +83,7 @@ class EditModeView(View):
             master=self._frame,
             width=40,
         )
-        self.textarea.grid(row=1, column=0)
+        self.textarea.grid(row=1, column=0, sticky='n')
         
         self.is_correct_syntax = True
         self.no_unassigned_nonterminals = True
@@ -83,7 +91,7 @@ class EditModeView(View):
         self.canvas = Canvas(
             master=self._frame,
             width=600,
-            height=300,
+            height=800,
             bg='white'
         )
         

@@ -12,11 +12,11 @@ class UI:
         
     def _show_edit_mode_view(self):
         self._hide_current_view()
-        self._current_view = EditModeView(self._root, self._service)
+        self._current_view = EditModeView(self._root, self._service, self._show_start_view)
         
     def _show_start_view(self):
         self._hide_current_view()
-        self._current_view = StartView(self._root, self._show_edit_mode_view, self._service)
+        self._current_view = StartView(self._root, self._service, self._show_edit_mode_view)
     
     def _hide_current_view(self):
         if self._current_view:
