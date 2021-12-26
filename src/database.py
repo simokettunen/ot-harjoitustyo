@@ -156,7 +156,7 @@ class Database:
         """Removes a single BNF model, rule, sequence or symbol from database.
 
         Args:
-            item_id: UUID of the parent of the item, or none if item is bnf
+            item_id: UUID of the of the item to be removed
             item_type (string): type of item, (bnf, rule, sequence, symbol)
         """
 

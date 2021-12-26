@@ -5,7 +5,7 @@ from service import Service
 def main():
     """Runs the mainloop of the application"""
 
-    database = Database('test.db')
+    database = Database('database.db')
     service = Service(database)
     app = UI(service)
     app.loop()

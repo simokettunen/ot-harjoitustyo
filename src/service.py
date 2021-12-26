@@ -16,6 +16,10 @@ class Service():
 
         self._database = database
         self.bnf = None
+        
+    def clear(self):
+        """Clears the current service, sets the stored BNF as None"""
+        self.bnf = None
 
     def create_bnf(self, string=''):
         """Creates a BNF object from string and adds it to the service.
@@ -101,15 +105,22 @@ class Service():
 
     def remove_bnf(self):
         """Removes BNF model and all data related it from database."""
+        
+        rules = self._database.fetch_all(self.bnf.id, 'rule')
 
-        for rule in self.bnf.rules:
-            for sequence in rule.sequences:
-                for symbol in sequence.symbols:
-                    self._database.remove(symbol.id, 'symbol')
+        for rule in rules:
+            sequences = self._database.fetch_all(rule[0], 'sequence')
+            
+            for sequence in sequences:
+            
+                symbols = self._database.fetch_all(sequence[0], 'symbol')
+                
+                for symbol in symbols:
+                    self._database.remove(symbol[0], 'symbol')
 
-                self._database.remove(sequence.id, 'sequence')
+                self._database.remove(sequence[0], 'sequence')
 
-            self._database.remove(rule.id, 'rule')
+            self._database.remove(rule[0], 'rule')
 
         self._database.remove(self.bnf.id, 'bnf')
 

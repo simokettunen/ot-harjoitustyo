@@ -44,6 +44,10 @@ class StartView(View):
             dropdown_load_model.pack()
             
         self._frame.pack()
+    
+    def handle_new_button_click(self):
+        self._service.clear()
+        self._go_to_edit()
 
     def _handle_load_button_click(self):
         bnf_id = self._dropdown_variable.get()
@@ -61,7 +65,7 @@ class EditModeView(View):
         button_back = ttk.Button(
             master=self._frame,
             text='Back',
-            command=self._go_to_start,
+            command=self._handle_back_button_click,
         )
         button_back.grid(row=0, column=2)
         
@@ -231,3 +235,8 @@ class EditModeView(View):
             
     def _handle_save_button_click(self):
         self._service.save_bnf()
+
+    def _handle_back_button_click(self):
+        self._service.clear()
+        self.textarea.insert('end-1c', '')
+        self._go_to_start()
