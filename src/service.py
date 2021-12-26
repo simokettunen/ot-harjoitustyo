@@ -16,7 +16,7 @@ class Service():
 
         self._database = database
         self.bnf = None
-        
+
     def clear(self):
         """Clears the current service, sets the stored BNF as None"""
         self.bnf = None
@@ -67,7 +67,7 @@ class Service():
         Args:
             bnf_id: UUID of the BNF to be loaded
         """
-        
+
         # Default value of dropdown in UI, return in that case
         if bnf_id == 'Models':
             return
@@ -105,16 +105,16 @@ class Service():
 
     def remove_bnf(self):
         """Removes BNF model and all data related it from database."""
-        
+
         rules = self._database.fetch_all(self.bnf.id, 'rule')
 
         for rule in rules:
             sequences = self._database.fetch_all(rule[0], 'sequence')
-            
+
             for sequence in sequences:
-            
+
                 symbols = self._database.fetch_all(sequence[0], 'symbol')
-                
+
                 for symbol in symbols:
                     self._database.remove(symbol[0], 'symbol')
 
