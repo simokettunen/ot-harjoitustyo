@@ -46,7 +46,7 @@ Alla olevassa kuvassa on esitetty sekvenssikaavio, kun BNF-malli luodaan. Käytt
 
 ## Tietojen tallennus
 
-Tiedot tallennetaan SQL-tietokantaan. Tietokanta alustetaan luokassa `Database` ja se annetaan syötteenä luokalle `Service`. Tietojen tallennuksesta, lataamisesta ja poistamisesta huolehtii luokka `Service`, joka välittää käskyt tietokantaluokalle `Database`.
+Tiedot tallennetaan SQL-tietokantaan. Tietokanta alustetaan luokassa [`Database`](../src/database.py#L9) ja se annetaan syötteenä luokalle `Service`. Tietojen tallennuksesta, lataamisesta ja poistamisesta huolehtii luokka `Service`, joka välittää käskyt tietokantaluokalle `Database`.
 
 Jokaisella luokalla `BNF`, `Rule`, `Sequence` ja `Symbol` on tietokannassa omat taulunsa. Tietokantaan tallennetaan näistä luokista seuraavat tiedot:
 
