@@ -5,7 +5,7 @@ from database import Database
 from service import Service
 from entities.bnf import BNF
 
-class TestDatabase(unittest.TestCase):
+class TestService(unittest.TestCase):
     def setUp(self):
         if os.path.isfile('temp.db'):
             os.remove('temp.db')
