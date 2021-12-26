@@ -21,7 +21,7 @@ Testausta vastaa testiluokka [TestService](../src/tests/service_test.py).
 
 ## Järjestelmätestaus
 
-Ohjelman järjestelmätestaus on suoritettu manuaalisesti. Järjestelmätestauksessa on testaus on suoritettu käsin lataamalla Gitlab-release gitlabista, asentamalla ohjelma, ja kokeilemalla käsin vaatimusmäärittelyssä esitetyt asiat käyttöohjeen mukaisesti. Testaus on suoritettu Windows 10:n kautta ajatellu Windows Subsystem Linuxilla Xlaunchin avulla sekä xxxxxx.
+Ohjelman järjestelmätestaus on suoritettu manuaalisesti. Järjestelmätestauksessa on testaus on suoritettu käsin lataamalla Gitlab-release gitlabista, asentamalla ohjelma, ja kokeilemalla käsin vaatimusmäärittelyssä esitetyt asiat käyttöohjeen mukaisesti. Testaus on suoritettu Windows 10:n kautta ajetulla Windows Subsystem Linuxin versiolla 2. WSL:ssä käyttöjärjestelmänä toimi Ubuntu 18.04 ja graafisen käyttöliittymän esittämisessä hyödennettiin Xmingin versiota 6.9.0.31. Lisäksi järjestelmätestaus on suoritettu suoraan Ubuntu 18.04 -käyttöjärjestelmällä.
 
 ## Yksikkö- ja integraatiotestausten testikattavuudet
 
