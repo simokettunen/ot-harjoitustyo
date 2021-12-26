@@ -25,7 +25,7 @@ Ohjelman järjestelmätestaus on suoritettu manuaalisesti. Järjestelmätestauks
 
 ## Yksikkö- ja integraatiotestausten testikattavuudet
 
-Yksikkö- ja integraatiotestausten testikattavuus on alla olevan taulukon mukaisesti 90 prosenttia. Käyttöliittymään liittyvää koodia ([ui.py](../src/ui/ui.py), [view.py](../src/ui/view.py)) ei ole huomioitu testikattavuuteen.
+Yksikkö- ja integraatiotestausten testikattavuus on alla olevan taulukon mukaisesti 89 prosenttia. Käyttöliittymään liittyvää koodia ([ui.py](../src/ui/ui.py), [view.py](../src/ui/view.py)) ei ole huomioitu testikattavuuteen.
 
     Name                       Stmts   Miss Branch BrPart  Cover   Missing
     ----------------------------------------------------------------------
@@ -35,6 +35,6 @@ Yksikkö- ja integraatiotestausten testikattavuus on alla olevan taulukon mukais
     src/entities/sequence.py      26      0     12      1    97%   52->55
     src/entities/symbol.py        13      0      4      0   100%
     src/main.py                   10     10      2      0     0%   1-14
-    src/service.py                63      7     30      4    86%   35, 46, 69, 74-75, 123-124
+    src/service.py                68      8     30      4    86%   22, 39, 50, 73, 78-79, 134-135
     ----------------------------------------------------------------------
-    TOTAL                        255     26    118      9    90%
+    TOTAL                        260     27    118      9    89%
