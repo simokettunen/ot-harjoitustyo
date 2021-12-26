@@ -13,17 +13,18 @@ BNF-visualisoijan tarkoituksena on piirtää graafi käyttäjän syöttämästä
 * [Tuntikirjanpito](dokumentaatio/tuntikirjanpito.md)
 
 ## Ohjelman käyttö
-Ohjelman asennus tapahtuu komennolla `poetry install`, jonka jälkeen ohjelman voi suorittaa komennolla `poetry run invoke start`.
+Ohjelman asennus tapahtuu komennolla `poetry install`, jonka jälkeen ohjelman voi suorittaa komennolla `poetry run invoke start`. Ohjeet ohjelman tarkempaan käyttöön on esitetty [käyttöohjeessa](dokumentaatio/kayttoohje.md).
 
-Ohjelman yksikkötestien suoritus onnistuu komennolla `poetry run invoke test` ja testiraportin saa komennolla `poetry run invoke coverage-report`. Pylintin suoritus onnistuu komennolla `poetry run invoke pylint`.
+Komentoja:
 
-### Syntaksi BNF-mallin kirjoittamiseen
-TODO
+* Ohjelman yksikkötestien suoritus:
 
-Esimerkkejä:
+    `poetry run invoke test`
 
-    <a> ::= <b> <c> | <d>
-    <b> ::= "abc"
-    <c> ::= <b> <c> | "r"
-    <d> ::= "x"
-    
+* Ohjelman testiraportin suoritus:
+ 
+    `poetry run invoke coverage-report`
+
+* Pylintin suoritus:
+
+    `poetry run invoke pylint`
