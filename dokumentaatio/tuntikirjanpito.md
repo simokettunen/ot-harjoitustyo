@@ -10,4 +10,6 @@
 | 6.12. | 6               | BNF-mallin refaktorointi neljään erilliseen luokkaan |
 | 7.12. | 6               | Arkkitehtuurin muokkaus vastaamaan kerrosarkkitehtuuria, lataus- ja tallennustoimintojen implementointi |
 | 14.12. | 4               | Varoitusominaisuuden (jos mallissa määrittelemättömiä lausekkeita) implementointi, docstring-dokumentointi, käyttöohjeen laadinta, bugikorjaus |
-| Yhteensä| 35 | |
+| 24.12. | 9 | Refaktorointia, bugifiksaus, dokumentaation laatimista |
+| 26.12. | 3 | Työn viimeistely, loppupalautuksen laatiminen
+| Yhteensä| 47 | |
