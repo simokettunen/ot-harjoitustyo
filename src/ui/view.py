@@ -220,14 +220,14 @@ class EditModeView(View):
                     text='Unassigned non-terminal appears in the model',
                 )
             
-                self.syntax_error_label.grid(row=2, column=0)
+                self.syntax_error_label.grid(row=1, column=0)
         else:
             self.syntax_error_label = ttk.Label(
                 master=self._frame,
                 text='Syntax error',
             )
         
-            self.syntax_error_label.grid(row=2, column=0)
+            self.syntax_error_label.grid(row=1, column=0)
             
     def _handle_save_button_click(self):
         self._service.save_bnf()
