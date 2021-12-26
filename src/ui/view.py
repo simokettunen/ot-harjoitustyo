@@ -140,14 +140,22 @@ class EditModeView(View):
         return cum_x
         
     def _draw_line(self, rule, y):
-        x = 30          # starting distance for left
+        x = 30          # starting distance from left
         r = 5           # circle radius
         dx = 15         # distance between circle and split
         dy = 30         # distance between rows
-        x_cum = x + r   # cumulative x
+        x_cum = x        # cumulative x
+        
+        label = self.canvas.create_text(x_cum, y, text=rule.symbol, anchor='w')
+        label_bbox = self.canvas.bbox(label)
+        label_width = label_bbox[2] - label_bbox[0]
+        
+        x_cum += label_width + 20
         
         # left circle
-        self.canvas.create_oval(x-r, y-r, x+r, y+r, fill='#000000')
+        self.canvas.create_oval(x_cum-r, y-r, x_cum+r, y+r, fill='#000000')
+        
+        x_cum += r   # cumulative x
         
         # from left circle to left split
         self.canvas.create_line(x_cum, y, x_cum + dx, y)
@@ -156,7 +164,7 @@ class EditModeView(View):
         x_cums = []
         
         for i in range(len(rule.sequences)):
-            x_cum2 = self._draw_sequence(rule.sequences[i], x+r+dx, y+dy*i)
+            x_cum2 = self._draw_sequence(rule.sequences[i], x_cum, y+dy*i)
             
             # from left split top to left split bottom
             self.canvas.create_line(x_cum, y, x_cum, y+dy*i)
