@@ -19,7 +19,7 @@ Mallin visualisointi onnistuu kirjoittamalla BNF-syntaksin mukainen määrittely
 
 ### Syntaksi BNF-mallin kirjoittamiseen
 
-BNF-malli koostuu säännöistä, sääntö koostuu lausekkeesta ja lauseke koostuu symboleista. Symboli voi olla muuttujasymboli tai päätesymboli. Päätesymboli on merkkijono, jonka ympärillä on lainausmerkit. Muuttujasymbolin ympärillä on merkit `<` ja `>`. Lausekkeessa symbolit erotellaan välilyönneillä. Säännössä lausekkeet erotetaan merkkillä `|`, jonka ympärillä on välilyönnit. Jokainen rivi muodostaa yhden säännön, missä säännön määrittävä muuttuja on vasemmalla, jonka jälkeen merkkijono `::=` ympäröitynä välilyönneillä, ja tämän jälkeen säännön lausekkeet.
+BNF-malli koostuu säännöistä, sääntö koostuu lausekkeesta ja lauseke koostuu symboleista. Symboli voi olla muuttujasymboli tai päätesymboli. Päätesymboli on merkkijono, jonka ympärillä on lainausmerkit. Muuttujasymbolin ympärillä on merkit `<` ja `>`. Lausekkeessa symbolit erotellaan välilyönneillä. Säännössä lausekkeet erotetaan merkkillä `|`, jonka ympärillä on välilyönnit. Jokainen rivi muodostaa yhden säännön, missä säännön määrittävä muuttuja on vasemmalla, jonka jälkeen merkkijono `::=` ympäröitynä välilyönneillä, ja tämän jälkeen säännön lausekkeet. Symboleissa sallittuja merkkejä ovat kirjaimet `a`–`z`.
 
 Esimerkki: Alla oleva malli sisältää säännöt muuttujille `<a>`, `<b>`, `<c>` ja `<d>`. Sääntö `<a>` koostuu kahdesta lausekkeesta, `<b> <c>` ja `<d>`. Sääntö `<b>` koostuu lausekkeesta, joka on merkkijono `abc`. Sääntö `<c>` koostuu lausekkeista `<b> <c>` ja `"r"`. Sääntö `<d>` koostuu lausekkesta, joka on merkkijono `"x"`.
 
