@@ -5,6 +5,7 @@ BNF-visualisoijan tarkoituksena on piirtää graafi käyttäjän syöttämästä
 ## Releaset
 * [Viikko 5](https://github.com/simokettunen/ot-harjoitustyo/releases/tag/viikko5)
 * [Viikko 6](https://github.com/simokettunen/ot-harjoitustyo/releases/tag/viikko6)
+* [Loppupalautus](https://github.com/simokettunen/ot-harjoitustyo/releases/tag/loppupalautus)
 
 ## Dokumentaatio
 * [Määrittelydokumentti](dokumentaatio/vaatimusmaarittely.md)
