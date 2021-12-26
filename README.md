@@ -10,6 +10,7 @@ BNF-visualisoijan tarkoituksena on piirtää graafi käyttäjän syöttämästä
 * [Määrittelydokumentti](dokumentaatio/vaatimusmaarittely.md)
 * [Arkkitehtuurikuvaus](dokumentaatio/arkkitehtuuri.md)
 * [Käyttöohje](dokumentaatio/kayttoohje.md)
+* [Testausdokumentti](dokumentaatio/testausdokumentti.md)
 * [Tuntikirjanpito](dokumentaatio/tuntikirjanpito.md)
 
 ## Ohjelman käyttö
