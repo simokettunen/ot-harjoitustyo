@@ -63,6 +63,10 @@ class Service():
         Args:
             bnf_id: UUID of the BNF to be loaded
         """
+        
+        # Default value of dropdown in UI, return in that case
+        if bnf_id == 'Models':
+            return
 
         bnfs = self._database.fetch_single(bnf_id, 'bnf')
 
